@@ -1,0 +1,8 @@
+.env
+festival.png
+.sessions/
+session_b64.txt
+__pycache__/
+*.pyc
+.venv/
+venv/

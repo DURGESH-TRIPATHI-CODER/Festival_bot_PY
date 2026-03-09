@@ -1,0 +1,41 @@
+name: Festival Poster Bot
+
+on:
+  schedule:
+    - cron: "30 3 * * *"   # 9:00 AM IST daily
+  workflow_dispatch:
+
+jobs:
+  post-festival:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Google Chrome
+        run: playwright install chrome --with-deps
+
+      - name: Run Festival Bot
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENROUTER_TEXT_MODEL: ${{ secrets.OPENROUTER_TEXT_MODEL }}
+          OPENROUTER_IMAGE_MODEL: ${{ secrets.OPENROUTER_IMAGE_MODEL }}
+          IMAGE_SIZE: "1024x1024"
+          X_USERNAME: ${{ secrets.X_USERNAME }}
+          X_PASSWORD: ${{ secrets.X_PASSWORD }}
+          X_SESSION_B64: ${{ secrets.X_SESSION_B64 }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          SUPABASE_BUCKET: ${{ secrets.SUPABASE_BUCKET }}
+        run: python festival_bot.py
