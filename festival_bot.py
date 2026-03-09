@@ -26,7 +26,7 @@ load_dotenv()
 # ---------------------------------------------------------------------------
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
-OPENROUTER_TEXT_MODEL = os.getenv("OPENROUTER_TEXT_MODEL", "mistralai/mistral-7b-instruct")
+OPENROUTER_TEXT_MODEL = os.getenv("OPENROUTER_TEXT_MODEL", "mistralai/mistral-7b-instruct-v0.3")
 OPENROUTER_IMAGE_MODEL = os.getenv("OPENROUTER_IMAGE_MODEL", "black-forest-labs/flux-1-schnell")
 IMAGE_SIZE = os.getenv("IMAGE_SIZE", "1024x1024")
 
